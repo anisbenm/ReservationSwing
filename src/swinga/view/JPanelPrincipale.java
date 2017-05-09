@@ -5,12 +5,17 @@
  */
 package swinga.view;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Administrateur
  */
 public class JPanelPrincipale extends javax.swing.JPanel {
 
+    
+    private static JPanelPrincipale singleton;
+    
     /**
      * Creates new form JPanelPrincipale
      */
@@ -28,44 +33,56 @@ public class JPanelPrincipale extends javax.swing.JPanel {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanelHotel1 = new swinga.view.JPanelHotel();
+        jbHotel = new javax.swing.JButton();
+        jbChambre = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Hotel");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
-
-        jButton2.setText("Chambre à coucher");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbHotel.setText("Hotel");
+        jbHotel.setFocusable(false);
+        jbHotel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbHotel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbHotelActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(jbHotel);
+
+        jbChambre.setText("Chambre à coucher");
+        jbChambre.setFocusable(false);
+        jbChambre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbChambre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbChambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbChambreActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jbChambre);
 
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
-        add(jPanelHotel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jbChambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbChambreActionPerformed
+        
+//        this.add(new JPanelChambre());
+//        this.setVisible(true);
+    }//GEN-LAST:event_jbChambreActionPerformed
+
+    private void jbHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHotelActionPerformed
+        
+//        this.add(new JPanelHotel());
+//        this.setVisible(true);// que la fenetre
+          this.add(new JPanelListeHotels(), BorderLayout.CENTER);
+          
+    }//GEN-LAST:event_jbHotelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private swinga.view.JPanelHotel jPanelHotel1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jbChambre;
+    private javax.swing.JButton jbHotel;
     // End of variables declaration//GEN-END:variables
 }
