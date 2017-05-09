@@ -6,6 +6,8 @@
 package swinga.view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,7 +16,23 @@ import java.awt.BorderLayout;
 public class JPanelPrincipale extends javax.swing.JPanel {
 
     
-    private static JPanelPrincipale singleton;
+   public void remplaceComposanCentral (JPanel NouveauPanneau){
+       
+       //supprime le panneau du centre s'il existe 
+       BorderLayout layout = (BorderLayout)this.getLayout();
+       Component component = layout.getLayoutComponent(BorderLayout.CENTER);
+       if (component!=null){
+           this.remove(component);
+       }
+       
+       //Ajouter un NouveauPanneau au centre 
+       this.add(NouveauPanneau  ,BorderLayout.CENTER);
+       
+       //Raffraichit l'affichage de l'objet actuel(un JPanelPrincipal donc) et 
+       //de tous ses composants enfants , petits enfants ...
+       this.validate();
+       
+   }
     
     /**
      * Creates new form JPanelPrincipale

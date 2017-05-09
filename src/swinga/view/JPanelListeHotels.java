@@ -100,7 +100,11 @@ public class JPanelListeHotels extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAjoutHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjoutHotelPanelActionPerformed
-     this.add(new JPanelHotel(),BorderLayout.CENTER);
+     //this.add(new JPanelHotel(),BorderLayout.CENTER);
+     
+     JPanelPrincipale parent =(JPanelPrincipale)this.getParent();
+     parent.remplaceComposanCentral(new JPanelHotel());
+     
              
     }//GEN-LAST:event_jbAjoutHotelPanelActionPerformed
 
