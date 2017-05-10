@@ -100,7 +100,7 @@ public class JPanelListReservation extends javax.swing.JPanel {
         //this.add(new JPanelHotel(),BorderLayout.CENTER);
 
         JPanelPrincipale parent =(JPanelPrincipale)this.getParent();
-//        parent.remplaceComposanCentral(new JPanelReservation());
+        parent.remplaceComposanCentral(new JPanelReservation());
 
     }//GEN-LAST:event_jbAjoutPanelActionPerformed
 

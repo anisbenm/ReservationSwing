@@ -26,7 +26,7 @@ public class ChambreService {
     
     public List<Chambre> listerChambres(){
         EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
-        return em.createQuery("SELECT c FROM Chambre c ORDERBY c.nom").getResultList();
+       return em.createQuery("SELECT c FROM Chambre c ").getResultList();
     }
     
 }
