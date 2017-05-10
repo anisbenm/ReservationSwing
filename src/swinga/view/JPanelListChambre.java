@@ -6,6 +6,7 @@
 package swinga.view;
 
 import java.util.List;
+import javax.swing.table.TableModel;
 import swinga.entity.Chambre;
 import swinga.service.ChambreService;
 import swinga.view.tablemodel.TableModelChambre;
@@ -73,6 +74,11 @@ public class JPanelListChambre extends javax.swing.JPanel {
         jbSupprimerHotelPanel.setFocusable(false);
         jbSupprimerHotelPanel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbSupprimerHotelPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbSupprimerHotelPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSupprimerHotelPanelActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbSupprimerHotelPanel);
 
         jbGererChambres.setText("Gérer les chambres");
@@ -110,6 +116,20 @@ public class JPanelListChambre extends javax.swing.JPanel {
     private void jbModifHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModifHotelPanelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbModifHotelPanelActionPerformed
+
+    private void jbSupprimerHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerHotelPanelActionPerformed
+                int indceSelectedLine= jtListeChambre.getSelectedRow();
+        if(indceSelectedLine!=-1){
+            
+            TableModel model=jtListeChambre.getModel();
+            long idCh=(long) model.getValueAt(indceSelectedLine, 0);
+            ChambreService chs=new ChambreService();
+            chs.supprimer(idCh);
+            JPanelPrincipale jpp=(JPanelPrincipale) this.getParent();
+            jpp.remplaceComposanCentral(new JPanelListChambre());
+            
+        }
+    }//GEN-LAST:event_jbSupprimerHotelPanelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

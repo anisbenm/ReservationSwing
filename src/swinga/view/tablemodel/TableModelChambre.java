@@ -35,8 +35,9 @@ public class TableModelChambre extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Chambre ch= listChambres.get(rowIndex);
         switch(columnIndex){
-            case 0: return ch.getNom();
-            case 1: return ch.getPrix();
+            case 0: return ch.getId();
+            case 1: return ch.getNom();
+            case 2: return ch.getPrix();
         }
         return new RuntimeException("Indice colonne chambre incorrect");
     }
