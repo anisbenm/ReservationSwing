@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>swinga.entity.Hotel</class>
     <class>swinga.entity.Chambre</class>
+    <class>swinga.entity.Client</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample2"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
