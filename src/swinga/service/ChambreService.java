@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import swinga.entity.Chambre;
 
 /**
@@ -16,17 +17,24 @@ import swinga.entity.Chambre;
  * @author Administrateur
  */
 public class ChambreService {
-    
-    public void ajoutChambre(Chambre ch){
+
+    public void ajoutChambre(Chambre ch) {
         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
         em.persist(ch);
         em.getTransaction().commit();
     }
-    
-    public List<Chambre> listerChambres(){
-        EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
+
+    public List<Chambre> listerChambres() {
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         return em.createQuery("SELECT c FROM Chambre c").getResultList();
     }
-    
+
+    public void supprimer(long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("DELETE FROM Chambre ch WHERE ch.id=" + id);
+        query.executeUpdate();
+        em.getTransaction().commit();
+    }
 }
