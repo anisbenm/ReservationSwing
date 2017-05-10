@@ -7,10 +7,14 @@ package swinga.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -28,6 +32,11 @@ public class Client implements Serializable {
     String prenom;
     @Temporal(javax.persistence.TemporalType.DATE)
     Date naissance;
+    
+    
+    @ManyToOne 
+    @JoinColumn(name = "id_reservation")
+     private Set<Reservation> reservationSet;
   
 
     public Long getId() {

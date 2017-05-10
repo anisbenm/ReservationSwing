@@ -6,50 +6,64 @@
 package swinga.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Administrateur
  */
 @Entity
-public class Chambre implements Serializable {
+public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nom;
-    private Double prix;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date date_entree;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date date_sortie;
+    
+    @OneToMany(mappedBy = "reservationSet")
+    private Client client;
     
     
-    @ManyToMany
-    @JoinTable(name = "RESERV_CHAMBRE", joinColumns = {
-        @JoinColumn(name = "RESERVATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "CHAMBRE_ID", referencedColumnName = "ID")})
-    private Set<Reservation> ReservationSet;
-   
+    @ManyToMany(mappedBy="ReservationSet")
+    private Set<Chambre> chambreSet;
+    
     
 
-    public Chambre(String nom, double prix) {
-        this.nom = nom;
-        this.prix = prix;
-   
+    public Date getDate_entree() {
+        return date_entree;
     }
 
-    public Chambre() {
+    public void setDate_entree(Date date_entree) {
+        this.date_entree = date_entree;
     }
 
+    public Date getDate_sortie() {
+        return date_sortie;
+    }
 
+    public void setDate_sortie(Date date_sortie) {
+        this.date_sortie = date_sortie;
+    }
 
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {
@@ -61,10 +75,10 @@ public class Chambre implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Chambre)) {
+        if (!(object instanceof Reservation)) {
             return false;
         }
-        Chambre other = (Chambre) object;
+        Reservation other = (Reservation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,35 +87,7 @@ public class Chambre implements Serializable {
 
     @Override
     public String toString() {
-        return "exercices.entity.Chambre[ id=" + id + " ]";
+        return "swinga.entity.Reservation[ id=" + id + " ]";
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(Double prix) {
-        this.prix = prix;
-    }
-
-    
-
-
     
 }
