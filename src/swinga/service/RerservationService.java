@@ -5,10 +5,23 @@
  */
 package swinga.service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import swinga.entity.Reservation;
+
 /**
  *
  * @author Administrateur
  */
 public class RerservationService {
+    
+    public void ajouterReservation (Reservation reservation){
+        
+        EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
+        em.getTransaction().begin();
+        em.persist(reservation);
+        em.getTransaction().commit();
+        
+    }
     
 }
