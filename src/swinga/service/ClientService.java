@@ -5,6 +5,7 @@
  */
 package swinga.service;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import swinga.entity.Client;
@@ -20,6 +21,11 @@ public class ClientService {
         em.getTransaction().begin();
         em.persist(cl);
         em.getTransaction().commit();  
+    }
+
+    public List<Client> lister() {
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        return em.createQuery("SELECT c FROM Client c").getResultList();
     }
     
 }

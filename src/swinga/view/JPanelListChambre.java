@@ -5,6 +5,11 @@
  */
 package swinga.view;
 
+import java.util.List;
+import swinga.entity.Chambre;
+import swinga.service.ChambreService;
+import swinga.view.tablemodel.TableModelChambre;
+
 /**
  *
  * @author Administrateur
@@ -16,7 +21,10 @@ public class JPanelListChambre extends javax.swing.JPanel {
      */
     public JPanelListChambre() {
         initComponents();
-    }
+        ChambreService chService = new ChambreService();
+        List<Chambre> listChambres=chService.listerChambres();
+        this.jtListeChambre.setModel(new TableModelChambre(listChambres));               
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +41,7 @@ public class JPanelListChambre extends javax.swing.JPanel {
         jbSupprimerHotelPanel = new javax.swing.JButton();
         jbGererChambres = new javax.swing.JButton();
         jspCentreHotL = new javax.swing.JScrollPane();
-        jtListeHotel = new javax.swing.JTable();
+        jtListeChambre = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -75,7 +83,7 @@ public class JPanelListChambre extends javax.swing.JPanel {
 
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
-        jtListeHotel.setModel(new javax.swing.table.DefaultTableModel(
+        jtListeChambre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,7 +94,7 @@ public class JPanelListChambre extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jspCentreHotL.setViewportView(jtListeHotel);
+        jspCentreHotL.setViewportView(jtListeChambre);
 
         add(jspCentreHotL, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -111,6 +119,6 @@ public class JPanelListChambre extends javax.swing.JPanel {
     private javax.swing.JButton jbModifHotelPanel;
     private javax.swing.JButton jbSupprimerHotelPanel;
     private javax.swing.JScrollPane jspCentreHotL;
-    private javax.swing.JTable jtListeHotel;
+    private javax.swing.JTable jtListeChambre;
     // End of variables declaration//GEN-END:variables
 }

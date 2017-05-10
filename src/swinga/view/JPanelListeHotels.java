@@ -5,6 +5,7 @@
  */
 package swinga.view;
 
+import swinga.view.tablemodel.TableModelHotel;
 import java.awt.BorderLayout;
 import java.util.List;
 import swinga.entity.Hotel;

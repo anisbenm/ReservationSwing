@@ -6,6 +6,7 @@
     <class>swinga.entity.Chambre</class>
     <class>swinga.entity.Client</class>
     <class>swinga.entity.Reservation</class>
+    <class>swinga.view.tablemodel.TableModelChambre</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample2"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
