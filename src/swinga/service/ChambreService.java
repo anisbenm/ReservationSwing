@@ -17,7 +17,7 @@ import swinga.entity.Chambre;
 public class ChambreService {
     
     public void ajoutChambre(Chambre ch){
-        EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
         em.persist(ch);
         em.getTransaction().commit();
