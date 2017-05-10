@@ -5,7 +5,13 @@
  */
 package swinga.view;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import swinga.entity.Chambre;
 import swinga.entity.Reservation;
+import swinga.service.ChambreService;
 
 /**
  *
@@ -18,6 +24,12 @@ public class JPanelReservation extends javax.swing.JPanel {
      */
     public JPanelReservation() {
         initComponents();
+        
+        //Récuperer la liste des chambres et les associées à la jcombobox 
+        ChambreService chService = new ChambreService();
+        ComboBoxModelChambre modelChambre= new ComboBoxModelChambre(chService.listerChambres());
+        this.jcbChambre.setModel(modelChambre);
+        
     }
 
     /**
@@ -31,14 +43,14 @@ public class JPanelReservation extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtfNumClient = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfDateArrivee = new javax.swing.JTextField();
-        jtfNumChambre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jtfDateSortie = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jcbChambre = new javax.swing.JComboBox<>();
+        jcbClient = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -47,15 +59,9 @@ public class JPanelReservation extends javax.swing.JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setName(""); // NOI18N
 
-        jLabel2.setText("Numéro Client");
+        jLabel2.setText(" Client");
 
-        jtfNumClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNumClientActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Numéro Chambre");
+        jLabel3.setText(" Chambre");
 
         jLabel4.setText("Date Arrivée");
 
@@ -67,6 +73,10 @@ public class JPanelReservation extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jcbChambre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jcbClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,16 +90,21 @@ public class JPanelReservation extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfNumChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfDateArrivee, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfNumClient, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfDateArrivee, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbClient, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,13 +112,13 @@ public class JPanelReservation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfNumClient)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfNumChambre)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfDateArrivee)
@@ -118,14 +133,12 @@ public class JPanelReservation extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfNumClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumClientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNumClientActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Reservation reserv =new Reservation();
-//        reserv.setDate_entree(this.jtfDateArrivee);
-//        reserv.setDate_sortie(date_sortie);
+        reserv.setDate_entree(Date.valueOf(this.jtfDateArrivee.getText()));
+        reserv.setDate_sortie(Date.valueOf(this.jtfDateSortie.getText()));  
+       // reserv.setChambreSet((this.jcbChambre.getEditor()));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -136,9 +149,9 @@ public class JPanelReservation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JComboBox<String> jcbChambre;
+    private javax.swing.JComboBox<String> jcbClient;
     private javax.swing.JTextField jtfDateArrivee;
     private javax.swing.JTextField jtfDateSortie;
-    private javax.swing.JTextField jtfNumChambre;
-    private javax.swing.JTextField jtfNumClient;
     // End of variables declaration//GEN-END:variables
 }

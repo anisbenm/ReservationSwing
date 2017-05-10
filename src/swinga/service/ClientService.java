@@ -16,7 +16,7 @@ import swinga.entity.Client;
 public class ClientService {
     
     public void ajoutClient(Client cl){
-        EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
         em.persist(cl);
         em.getTransaction().commit();  

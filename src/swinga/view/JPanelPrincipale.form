@@ -41,13 +41,35 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbChambre">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Chambre &#xe0; coucher"/>
+            <Property name="text" type="java.lang.String" value="Chambre"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbChambreActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbClient">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Client"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbClientActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbReservation">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reservation"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbReservationActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -7,7 +7,7 @@ package swinga;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import swinga.view.JFramePrincipale;
+import swinga.view.JFrameP;
 
 /**
  *
@@ -20,7 +20,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        JFrame fenetrePrincipale = new JFramePrincipale();
+        JFrame fenetrePrincipale = new JFrameP();
 
         
     }

@@ -17,14 +17,14 @@ import swinga.entity.Hotel;
  */
 public class HotelService {
     public void ajouter(Hotel hotel){
-        EntityManager em= Persistence.createEntityManagerFactory("pu").createEntityManager();
+        EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
         em.persist(hotel);
         em.getTransaction().commit();
     }
     
     public List<Hotel> lister(){
-    EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+    EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
     return em.createQuery("SELECT h FROM Hotel h ORDER BY h.nom").getResultList();
     }
 }

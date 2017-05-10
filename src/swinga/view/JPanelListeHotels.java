@@ -67,6 +67,11 @@ public class JPanelListeHotels extends javax.swing.JPanel {
         jbModifHotelPanel.setFocusable(false);
         jbModifHotelPanel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbModifHotelPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbModifHotelPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModifHotelPanelActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbModifHotelPanel);
 
         jbSupprimerHotelPanel.setText("Supprimer");
@@ -75,7 +80,7 @@ public class JPanelListeHotels extends javax.swing.JPanel {
         jbSupprimerHotelPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jbSupprimerHotelPanel);
 
-        jbGererChambres.setText("Gérer les chambres");
+        jbGererChambres.setText("Gérer les hotels");
         jbGererChambres.setFocusable(false);
         jbGererChambres.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbGererChambres.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -107,6 +112,10 @@ public class JPanelListeHotels extends javax.swing.JPanel {
      
              
     }//GEN-LAST:event_jbAjoutHotelPanelActionPerformed
+
+    private void jbModifHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModifHotelPanelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbModifHotelPanelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
