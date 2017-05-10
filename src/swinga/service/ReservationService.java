@@ -14,7 +14,7 @@ import swinga.entity.Reservation;
  *
  * @author Administrateur
  */
-public class RerservationService {
+public class ReservationService {
     
     public void ajouterReservation (Reservation reservation){
         
