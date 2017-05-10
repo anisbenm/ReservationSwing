@@ -25,7 +25,7 @@ public class ClientService {
 
     public List<Client> lister() {
         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
-        return em.createQuery("SELECT c FROM Client c").getResultList();
+        return em.createQuery("SELECT c FROM Client c ORDER BY c.nom").getResultList();
     }
     
 }
