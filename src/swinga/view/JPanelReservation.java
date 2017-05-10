@@ -124,8 +124,8 @@ public class JPanelReservation extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Reservation reserv =new Reservation();
-        reserv.setDate_entree(this.jtfDateArrivee);
-        reserv.setDate_sortie(date_sortie);
+//        reserv.setDate_entree(this.jtfDateArrivee);
+//        reserv.setDate_sortie(date_sortie);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
