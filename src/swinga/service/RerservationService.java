@@ -5,6 +5,7 @@
  */
 package swinga.service;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import swinga.entity.Reservation;
@@ -22,6 +23,11 @@ public class RerservationService {
         em.persist(reservation);
         em.getTransaction().commit();
         
+    }
+    
+    public List<Reservation> ListerReservation(){
+        EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
+        return em.createQuery("SELECT r FROM Reservation r").getResultList();
     }
     
 }

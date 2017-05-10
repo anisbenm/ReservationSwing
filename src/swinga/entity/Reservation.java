@@ -39,9 +39,11 @@ public class Reservation implements Serializable {
     private Client client;
     
     
-    @ManyToMany(mappedBy="ReservationSet")
-    private Set<Chambre> chambreSet;
+    @ManyToMany(mappedBy="reservations")
+    private Set<Chambre> chambres;
 
+    
+    
     public Client getClient() {
         return client;
     }
@@ -50,12 +52,12 @@ public class Reservation implements Serializable {
         this.client = client;
     }
 
-    public Set<Chambre> getChambreSet() {
-        return chambreSet;
+    public Set<Chambre> getChambres() {
+        return chambres;
     }
 
-    public void setChambreSet(Set<Chambre> chambreSet) {
-        this.chambreSet = chambreSet;
+    public void setChambres(Set<Chambre> chambres) {
+        this.chambres = chambres;
     }
     
     

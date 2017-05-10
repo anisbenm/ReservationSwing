@@ -34,7 +34,15 @@ public class Chambre implements Serializable {
     @JoinTable(name = "RESERV_CHAMBRE", joinColumns = {
         @JoinColumn(name = "RESERVATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "CHAMBRE_ID", referencedColumnName = "ID")})
-    private Set<Reservation> ReservationSet;
+    private Set<Reservation> reservations;
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
    
     
 

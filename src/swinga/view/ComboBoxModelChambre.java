@@ -17,6 +17,10 @@ public class ComboBoxModelChambre extends DefaultComboBoxModel {
     
     private List<Chambre> listChambre;
 
+    public List<Chambre> getListChambre() {
+        return listChambre;
+    }
+
     public ComboBoxModelChambre(List<Chambre> listChambre) {
         this.listChambre = listChambre;
     }
