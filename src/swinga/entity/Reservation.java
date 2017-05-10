@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -32,12 +34,31 @@ public class Reservation implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date date_sortie;
     
-    @OneToMany(mappedBy = "reservationSet")
+    @ManyToOne
+    @JoinColumn(name="client_id")
     private Client client;
     
     
     @ManyToMany(mappedBy="ReservationSet")
     private Set<Chambre> chambreSet;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Set<Chambre> getChambreSet() {
+        return chambreSet;
+    }
+
+    public void setChambreSet(Set<Chambre> chambreSet) {
+        this.chambreSet = chambreSet;
+    }
+    
+    
     
     
 

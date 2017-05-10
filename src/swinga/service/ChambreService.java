@@ -5,6 +5,7 @@
  */
 package swinga.service;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -21,6 +22,11 @@ public class ChambreService {
         em.getTransaction().begin();
         em.persist(ch);
         em.getTransaction().commit();
+    }
+    
+    public List<Chambre> listerChambres(){
+        EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
+        return em.createQuery("SELECT c FROM Chambre c ORDERBY c.nom").getResultList();
     }
     
 }
