@@ -5,6 +5,8 @@
  */
 package swinga.view;
 
+import swinga.view.tablemodel.ComboBoxModelClient;
+import swinga.view.tablemodel.ComboBoxModelChambre;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
