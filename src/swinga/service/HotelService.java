@@ -28,6 +28,7 @@ public class HotelService {
     EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
     return em.createQuery("SELECT h FROM Hotel h ORDER BY h.nom").getResultList();
     }
+    
     public void supprimer(long id){
         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
@@ -37,4 +38,7 @@ public class HotelService {
 //        em.remove(hotel);
         em.getTransaction().commit();
     }
+    
+    
+  
 }

@@ -114,7 +114,16 @@ public class JPanelListClients extends javax.swing.JPanel {
     }//GEN-LAST:event_jbAjoutHotelPanelActionPerformed
 
     private void jbModifHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModifHotelPanelActionPerformed
-        // TODO add your handling code here:
+        
+        int indceSelectedLine= jtListeClient.getSelectedRow();
+        if(indceSelectedLine!=-1){
+            TableModel model=jtListeClient.getModel();
+            long idClient=(long) model.getValueAt(indceSelectedLine, 0);
+            ClientService cls=new ClientService();
+            cls.moddifier(idClient);
+            JPanelPrincipale jpp=(JPanelPrincipale) this.getParent();
+            jpp.remplaceComposanCentral(new JPanelListClients());
+        }
     }//GEN-LAST:event_jbModifHotelPanelActionPerformed
 
     private void jbSupprimerHotelPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerHotelPanelActionPerformed

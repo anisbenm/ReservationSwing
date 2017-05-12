@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import swinga.entity.Chambre;
+import swinga.entity.Client;
 import swinga.entity.Reservation;
 import swinga.service.ChambreService;
+import swinga.service.ClientService;
+import swinga.service.ReservationService;
 
 /**
  *
@@ -24,12 +27,16 @@ public class JPanelReservation extends javax.swing.JPanel {
      */
     public JPanelReservation() {
         initComponents();
-        
+
         //Récuperer la liste des chambres et les associées à la jcombobox 
         ChambreService chService = new ChambreService();
-        ComboBoxModelChambre modelChambre= new ComboBoxModelChambre(chService.listerChambres());
+        ComboBoxModelChambre modelChambre = new ComboBoxModelChambre(chService.listerChambres());
         this.jcbChambre.setModel(modelChambre);
-        
+
+        ClientService clService = new ClientService();
+        ComboBoxModelClient modelClient = new ComboBoxModelClient(clService.lister());
+        this.jcbClient.setModel(modelClient);
+
     }
 
     /**
@@ -45,12 +52,12 @@ public class JPanelReservation extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtfDateArrivee = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jtfDateSortie = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jcbChambre = new javax.swing.JComboBox<>();
         jcbClient = new javax.swing.JComboBox<>();
+        jftDateArrivee = new javax.swing.JFormattedTextField();
+        jftDateSortie = new javax.swing.JFormattedTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -77,6 +84,15 @@ public class JPanelReservation extends javax.swing.JPanel {
         jcbChambre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jcbClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbClientActionPerformed(evt);
+            }
+        });
+
+        jftDateArrivee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        jftDateSortie.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,11 +115,11 @@ public class JPanelReservation extends javax.swing.JPanel {
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbClient, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcbChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfDateArrivee, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcbClient, 0, 167, Short.MAX_VALUE)
+                                    .addComponent(jcbChambre, 0, 167, Short.MAX_VALUE)
+                                    .addComponent(jftDateArrivee)
+                                    .addComponent(jftDateSortie))))))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,36 +137,45 @@ public class JPanelReservation extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtfDateArrivee))
+                    .addComponent(jftDateArrivee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                        .addGap(34, 34, 34))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jtfDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(jftDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Reservation reserv =new Reservation();
-        reserv.setDate_entree(Date.valueOf(this.jtfDateArrivee.getText()));
-        reserv.setDate_sortie(Date.valueOf(this.jtfDateSortie.getText())); 
-        
-        int iSelected = jcbChambre.getSelectedIndex();
-        Chambre chSelectionnee = ((ComboBoxModelChambre)jcbChambre.getModel()).getListChambre().get(iSelected);
-        chSelectionnee.getReservations().add(reserv);
-        reserv.getChambres().add(chSelectionnee);
-        
-        
-       // reserv.getChambreSet()(this.jcbChambre.ge)
-         //reserv.setChambreSet((this.jcbChambre.getEditor()));
-        // reserv.setClient(this.jcbClient.getEditor());
-        
+        Reservation reserv = new Reservation();
+        ReservationService rs = new ReservationService();
+
+        reserv.setDate_entree((java.util.Date) this.jftDateArrivee.getValue());
+        reserv.setDate_sortie((java.util.Date) this.jftDateSortie.getValue());
+
+        //reserv.setDate_entree ((Date)this.jtfDateArrivee.get);
+        //  reserv.setDate_entree(Date.valueOf(this.jtfDateArrivee.getText()));
+        // reserv.setDate_sortie(Date.valueOf(this.jtfDateSortie.getText())); 
+        int iChambreSel = jcbChambre.getSelectedIndex();
+        long idChambreSel = ((ComboBoxModelChambre) jcbChambre.getModel()).getListChambre().get(iChambreSel).getId();
+        Chambre chambreSel = new ChambreService().rechercher(idChambreSel);// Il faut la récupérer à partir de la base
+        //chambreSel.getReservations().add(reserv);
+       // reserv.getChambres().add(chambreSel);
+
+        int iSelect = jcbClient.getSelectedIndex();
+        Client clSelectionnee = ((ComboBoxModelClient) jcbClient.getModel()).getListClient().get(iSelect);
+        clSelectionnee.getReservations().add(reserv);
+        reserv.setClient(clSelectionnee);
+
+        rs.ajouterReservation(reserv, idChambreSel);
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jcbClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbClientActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,7 +187,7 @@ public class JPanelReservation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JComboBox<String> jcbChambre;
     private javax.swing.JComboBox<String> jcbClient;
-    private javax.swing.JTextField jtfDateArrivee;
-    private javax.swing.JTextField jtfDateSortie;
+    private javax.swing.JFormattedTextField jftDateArrivee;
+    private javax.swing.JFormattedTextField jftDateSortie;
     // End of variables declaration//GEN-END:variables
 }

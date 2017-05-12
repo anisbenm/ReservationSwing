@@ -36,4 +36,13 @@ public class ClientService {
         query.executeUpdate();
         em.getTransaction().commit();
     }
+    
+    public void moddifier (long id){
+    /*    EntityManager em= Persistence.createEntityManagerFactory("PU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge("UPDATE FROM Client c SET  WHERE c.id=" + id);
+        em.getTransaction().commit();*/
+        
+    }
+     
 }

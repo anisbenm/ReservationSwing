@@ -144,7 +144,7 @@ public class JPanelListReservation extends javax.swing.JPanel {
             TableModel model= jtListeReservation.getModel();
              long idReservation=(long) model.getValueAt(indceSelectedLine, 0);
              ReservationService rs= new ReservationService();
-             rs.supprimerResevation(idReservation);
+             rs.supprimer(idReservation);
             
              JPanelPrincipale jpp=(JPanelPrincipale) this.getParent();
             jpp.remplaceComposanCentral(new JPanelListReservation());

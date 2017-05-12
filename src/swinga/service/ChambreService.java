@@ -37,4 +37,10 @@ public class ChambreService {
         query.executeUpdate();
         em.getTransaction().commit();
     }
+
+    public Chambre rechercher(long idChambreSel) {
+        
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        return em.find(Chambre.class, idChambreSel);
+    }
 }

@@ -6,6 +6,7 @@
 package swinga.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Chambre implements Serializable {
     @JoinTable(name = "RESERV_CHAMBRE", joinColumns = {
         @JoinColumn(name = "RESERVATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "CHAMBRE_ID", referencedColumnName = "ID")})
-    private Set<Reservation> reservations;
+    private Set<Reservation> reservations=new HashSet<>();
 
     public Set<Reservation> getReservations() {
         return reservations;

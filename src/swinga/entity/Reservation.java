@@ -7,7 +7,9 @@ package swinga.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +42,7 @@ public class Reservation implements Serializable {
     
     
     @ManyToMany(mappedBy="reservations")
-    private Set<Chambre> chambres;
+    private Set<Chambre> chambres= new HashSet<>();
 
     
     
