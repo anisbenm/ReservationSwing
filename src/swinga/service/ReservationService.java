@@ -25,13 +25,16 @@ public class ReservationService {
         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
         em.getTransaction().begin();
         
-        // Association resa / chambre bi-directionnelle
+       // Récupérer la chambre avec l'idChambre
         Chambre chambreSel= em.find(Chambre.class, idChambre);
        
         
         
         em.persist(reservation);
-         reservation.getChambres().add(chambreSel);
+        
+        // Association resa / chambre bi-directionnelle
+        
+        reservation.getChambres().add(chambreSel);
         chambreSel.getReservations().add(reservation);
         em.getTransaction().commit();
 

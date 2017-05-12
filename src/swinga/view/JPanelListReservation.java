@@ -126,6 +126,7 @@ public class JPanelListReservation extends javax.swing.JPanel {
              long idReservation=(long) model.getValueAt(indceSelectedLine, 0);
              java.util.Date DateArriveeModifie= (java.util.Date) model.getValueAt(indceSelectedLine,1);
              java.util.Date DateSortieModifie= (java.util.Date) model.getValueAt(indceSelectedLine,2);
+             
              ReservationService rs= new ReservationService();
              rs.moddifierReservation(idReservation,DateArriveeModifie,DateSortieModifie);
             
