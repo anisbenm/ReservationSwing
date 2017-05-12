@@ -5,7 +5,9 @@
  */
 package swinga.view;
 
+import java.util.Date;
 import java.util.List;
+import javax.swing.table.TableModel;
 import swinga.entity.Reservation;
 import swinga.service.ReservationService;
 import swinga.view.tablemodel.TableModelReservation;
@@ -73,6 +75,11 @@ public class JPanelListReservation extends javax.swing.JPanel {
         jbSupprimerlPanel.setFocusable(false);
         jbSupprimerlPanel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbSupprimerlPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbSupprimerlPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSupprimerlPanelActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbSupprimerlPanel);
 
         jbGererReservation.setText("Gérer les réservations");
@@ -113,12 +120,37 @@ public class JPanelListReservation extends javax.swing.JPanel {
     }//GEN-LAST:event_jbAjoutPanelActionPerformed
 
     private void jbModiflPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModiflPanelActionPerformed
-        // TODO add your handling code here:
+        int indceSelectedLine= jtListeReservation.getSelectedRow();
+        if(indceSelectedLine!=-1){
+            TableModel model= jtListeReservation.getModel();
+             long idReservation=(long) model.getValueAt(indceSelectedLine, 0);
+             java.util.Date DateArriveeModifie= (java.util.Date) model.getValueAt(indceSelectedLine,1);
+             java.util.Date DateSortieModifie= (java.util.Date) model.getValueAt(indceSelectedLine,2);
+             ReservationService rs= new ReservationService();
+             rs.moddifierReservation(idReservation,DateArriveeModifie,DateSortieModifie);
+            
+             JPanelPrincipale jpp=(JPanelPrincipale) this.getParent();
+            jpp.remplaceComposanCentral(new JPanelListReservation());
+        }
     }//GEN-LAST:event_jbModiflPanelActionPerformed
 
     private void jbGererReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGererReservationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbGererReservationActionPerformed
+
+    private void jbSupprimerlPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerlPanelActionPerformed
+        int indceSelectedLine= jtListeReservation.getSelectedRow();
+        if(indceSelectedLine!=-1){
+            TableModel model= jtListeReservation.getModel();
+             long idReservation=(long) model.getValueAt(indceSelectedLine, 0);
+             ReservationService rs= new ReservationService();
+             rs.supprimerResevation(idReservation);
+            
+             JPanelPrincipale jpp=(JPanelPrincipale) this.getParent();
+            jpp.remplaceComposanCentral(new JPanelListReservation());
+        }
+        
+    }//GEN-LAST:event_jbSupprimerlPanelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
